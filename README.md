@@ -1,5 +1,16 @@
 # Diabetes Prediction – MLOps Project
 
+## Team Member Roles
+
+| Team Member | Role | Contribution |
+|------------|------|--------------|
+| Divya JAYAPRAKASH | Core Implementation | Initialized the repository, defined the project scope, and coordinated overall development |
+| Jayasri DHANAPAL | Documentation | Improved README with dataset description, workflow, and usage instructions |
+| Reshma KARTHIKEYAN NAIR | Data Validation | Added dataset validation script |
+| Gurpreetkaur Jaykumar MODI | Code Hygiene | Added docstrings, type hints, and inline comments |
+| Vidhya Sandeep NAKADE | Project Setup | Improved .gitignore and added contributing guidelines |
+
+
 ## Project Description
 This project aims to build an end-to-end MLOps pipeline to predict whether a patient has diabetes using medical diagnostic measurements.  
 The focus is on reproducibility, clean code structure, and MLOps best practices rather than model complexity.
