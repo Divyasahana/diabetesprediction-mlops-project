@@ -1,5 +1,16 @@
 # Diabetes Prediction – MLOps Project
 
+## Team Member Roles
+
+| Team Member | Role | Contribution |
+|------------|------|--------------|
+| Divya JAYAPRAKASH | Core Implementation | Initialized the repository, defined the project scope, and coordinated overall development |
+| Jayasri DHANAPAL | Documentation | Improved README with dataset description, workflow, and usage instructions |
+| Reshma KARTHIKEYAN NAIR | Data Validation | Added dataset validation script |
+| Gurpreetkaur Jaykumar MODI | Code Hygiene | Added docstrings, type hints, and inline comments |
+| Vidhya Sandeep NAKADE | Project Setup | Improved .gitignore and added contributing guidelines |
+
+
 ## Project Description
 This project aims to build an end-to-end MLOps pipeline to predict whether a patient has diabetes using medical diagnostic measurements.  
 The focus is on reproducibility, clean code structure, and MLOps best practices rather than model complexity.
@@ -14,6 +25,7 @@ The focus is on reproducibility, clean code structure, and MLOps best practices 
 - **Features:** Medical attributes such as glucose level, BMI, age, etc.
 - **Target:** `Outcome`
 
+
 ## Project Structure
 DiabetesPrediction-mlops-project/
 │
@@ -27,3 +39,52 @@ DiabetesPrediction-mlops-project/
 ├── pyproject.toml
 ├── uv.lock
 └── .gitignore
+
+## Dataset Description
+
+This project uses the Pima Indians Diabetes Dataset for binary classification.
+
+| Column Name | Description |
+|------------|-------------|
+| Pregnancies | Number of times pregnant |
+| Glucose | Plasma glucose concentration |
+| BloodPressure | Diastolic blood pressure |
+| SkinThickness | Triceps skin fold thickness |
+| Insulin | 2-hour serum insulin |
+| BMI | Body Mass Index |
+| DiabetesPedigreeFunction | Diabetes pedigree function |
+| Age | Age of the patient |
+| Outcome | Target variable (0 = Non-diabetic, 1 = Diabetic) |
+
+## How to Run the Project Locally
+
+### 1. Clone the repository
+```bash`
+git clone https://github.com/Divyasahana/DiabetesPrediction-mlops-project.git
+cd DiabetesPrediction-mlops-project
+
+### 2. Create and activate virtual environment
+```bash`
+python -m venv venv
+# Windows:
+venv\Scripts\activate
+# Mac/Linux:
+# source venv/bin/activate
+
+### 3. Install dependencies
+pip install .
+
+### 4. Run the application
+python src/train.py
+
+
+---
+
+
+## Project Workflow
+
+1. Load dataset from `data/diabetes.csv`  
+2. Preprocess and clean data (handle missing values, scale features)  
+3. Train machine learning model (Logistic Regression baseline)  
+4. Evaluate model performance (accuracy, confusion matrix)  
+5. Save trained model for deployment
