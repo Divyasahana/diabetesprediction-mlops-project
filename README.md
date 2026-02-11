@@ -8,11 +8,11 @@
 | Jayasri DHANAPAL | Documentation | Improved README with dataset description, workflow, and usage instructions |
 | Reshma KARTHIKEYAN NAIR | Data Validation | Added dataset validation script |
 | Gurpreetkaur Jaykumar MODI | Code Hygiene | Added docstrings, type hints, and inline comments |
-| Vidhya Sandeep NAKADE | Project Setup | Improved .gitignore and added contributing guidelines |
+| Vidya Sandeep NAKADE | Project Setup | Improved .gitignore and added contributing guidelines |
 
 
 ## Project Description
-This project aims to build an end-to-end MLOps pipeline to predict whether a patient has diabetes using medical diagnostic measurements.  
+This project aims to build an end-to-end MLOps pipeline to predict whether a patient has diabetes using medical diagnostic measurements.
 The focus is on reproducibility, clean code structure, and MLOps best practices rather than model complexity.
 
 ## Machine Learning Task
@@ -83,8 +83,22 @@ python src/train.py
 
 ## Project Workflow
 
-1. Load dataset from `data/diabetes.csv`  
-2. Preprocess and clean data (handle missing values, scale features)  
-3. Train machine learning model (Logistic Regression baseline)  
-4. Evaluate model performance (accuracy, confusion matrix)  
+1. Load dataset from `data/diabetes.csv`
+2. Preprocess and clean data (handle missing values, scale features)
+3. Train machine learning model (Logistic Regression baseline)
+4. Evaluate model performance (accuracy, confusion matrix)
 5. Save trained model for deployment
+
+# Experiment Tracking
+
+This project uses **MLflow** to track machine learning experiments, including:
+
+- Model parameters
+- Evaluation metrics
+- Trained model artifacts
+
+### Experiment Details
+
+- **Experiment Name:** `diabetes-baseline`
+- **Tracked Metric:** Accuracy
+- **Artifacts Logged:** Trained model file
