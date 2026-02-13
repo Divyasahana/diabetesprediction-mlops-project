@@ -103,4 +103,10 @@ This project uses **MLflow** to track machine learning experiments, including:
 - **Tracked Metric:** Accuracy
 - **Artifacts Logged:** Trained model file
 
+### Run locally
+
+```bash
+python src/train.py
+mlflow ui
+
 
