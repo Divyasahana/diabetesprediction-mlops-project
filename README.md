@@ -2,13 +2,13 @@
 
 ## Team Member Roles
 
-| Team Member | Role | 
-|------------|------|
-| Divya JAYAPRAKASH | Core Implementation | 
-| Jayasri DHANAPAL | Documentation | 
-| Reshma KARTHIKEYAN NAIR | Data Validation | 
-| Gurpreetkaur Jaykumar MODI | Code Hygiene | 
-| Vidya Sandeep NAKADE | Project Setup | 
+| Team Member |  
+|------------|
+| Divya JAYAPRAKASH | 
+| Jayasri DHANAPAL |
+| Reshma KARTHIKEYAN NAIR | 
+| Gurpreetkaur Jaykumar MODI | 
+| Vidya Sandeep NAKADE | 
 
 
 ## Project Description
