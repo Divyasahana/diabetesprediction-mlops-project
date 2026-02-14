@@ -2,13 +2,13 @@
 
 ## Team Member Roles
 
-| Team Member | Role | Contribution |
-|------------|------|--------------|
-| Divya JAYAPRAKASH | Core Implementation | Initialized the repository, defined the project scope, and coordinated overall development |
-| Jayasri DHANAPAL | Documentation | Improved README with dataset description, workflow, and usage instructions |
-| Reshma KARTHIKEYAN NAIR | Data Validation | Added dataset validation script |
-| Gurpreetkaur Jaykumar MODI | Code Hygiene | Added docstrings, type hints, and inline comments |
-| Vidya Sandeep NAKADE | Project Setup | Improved .gitignore and added contributing guidelines |
+| Team Member | Role | 
+|------------|------|
+| Divya JAYAPRAKASH | Core Implementation | 
+| Jayasri DHANAPAL | Documentation | 
+| Reshma KARTHIKEYAN NAIR | Data Validation | 
+| Gurpreetkaur Jaykumar MODI | Code Hygiene | 
+| Vidya Sandeep NAKADE | Project Setup | 
 
 
 ## Project Description
