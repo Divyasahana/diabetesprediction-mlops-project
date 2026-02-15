@@ -2,13 +2,13 @@
 
 ## Team Member Roles
 
-| Team Member |  
+| Team Member |
 |------------|
-| Divya JAYAPRAKASH | 
+| Divya JAYAPRAKASH |
 | Jayasri DHANAPAL |
-| Reshma KARTHIKEYAN NAIR | 
-| Gurpreetkaur Jaykumar MODI | 
-| Vidya Sandeep NAKADE | 
+| Reshma KARTHIKEYAN NAIR |
+| Gurpreetkaur Jaykumar MODI |
+| Vidya Sandeep NAKADE |
 
 
 ## Project Description
@@ -108,5 +108,3 @@ This project uses **MLflow** to track machine learning experiments, including:
 ```bash
 python src/train.py
 mlflow ui
-
-

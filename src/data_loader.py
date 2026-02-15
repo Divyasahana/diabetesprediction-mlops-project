@@ -2,6 +2,7 @@ import pandas as pd
 from pathlib import Path
 from typing import Tuple
 
+
 def load_data(data_path: str | Path) -> Tuple[pd.DataFrame, pd.Series]:
     """
     Load diabetes dataset from CSV file.
@@ -14,12 +15,12 @@ def load_data(data_path: str | Path) -> Tuple[pd.DataFrame, pd.Series]:
         y (pd.Series): Target variable
     """
 
-# Convert input path to Path object
+    # Convert input path to Path object
     data_path = Path(data_path)
- # Read CSV file  
+    # Read CSV file
     df = pd.read_csv(data_path)
 
-# Separate features and target column
+    # Separate features and target column
     X = df.drop(columns=["Outcome"])
     y = df["Outcome"]
 
