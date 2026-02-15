@@ -108,3 +108,22 @@ This project uses **MLflow** to track machine learning experiments, including:
 ```bash
 python src/train.py
 mlflow ui
+
+###Quick Verification Commands:
+```bash
+# Clone and setup
+git clone https://github.com/Divyasahana/diabetesprediction-mlops-project
+cd diabetesprediction-mlops-project
+uv sync
+
+# Verify pre-commit hooks
+pre-commit run --all-files
+
+# Run tests with coverage
+pytest tests/ --cov=src --cov-report=term-missing
+
+# Run training pipeline
+python -m src.train
+
+# View MLflow experiments
+mlflow ui
