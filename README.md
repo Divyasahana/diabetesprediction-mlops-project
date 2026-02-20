@@ -127,3 +127,6 @@ python -m src.train
 
 # View MLflow experiments
 mlflow ui
+
+### Instruction
+ Run training script before running API.
