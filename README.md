@@ -130,3 +130,4 @@ mlflow ui
 
 ### Instruction
  Run training script before running API.
+git checkout feature/api-checkpoint3
