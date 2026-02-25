@@ -27,3 +27,6 @@ Thank you for contributing to this project.
 
 If adding new package:
 - Update requirements.txt
+
+# Contributing Guidelines
+Please create feature branches and open pull requests.
