@@ -1,132 +1,213 @@
-# Diabetes Prediction – MLOps Project
+# Diabetes Prediction -- End-to-End MLOps Project
 
-## Team Member Roles
+This project demonstrates a complete MLOps workflow for predicting
+diabetes using machine learning.\
+It includes model development, experiment tracking, testing, CI/CD
+automation, API deployment, and Docker containerization.
 
-| Team Member |
-|------------|
-| Divya JAYAPRAKASH |
-| Jayasri DHANAPAL |
-| Reshma KARTHIKEYAN NAIR |
-| Gurpreetkaur Jaykumar MODI |
-| Vidya Sandeep NAKADE |
+------------------------------------------------------------------------
 
+# Dataset Description
 
-## Project Description
-This project aims to build an end-to-end MLOps pipeline to predict whether a patient has diabetes using medical diagnostic measurements.
-The focus is on reproducibility, clean code structure, and MLOps best practices rather than model complexity.
+The dataset used is the **Pima Indians Diabetes Dataset**.
 
-## Machine Learning Task
-- **Problem type:** Binary classification
-- **Objective:** Predict diabetes outcome (0 = No diabetes, 1 = Diabetes)
-- **Model (baseline):** Logistic Regression
+### Features:
 
-## Dataset
-- **Source:** https://github.com/plotly/datasets/blob/master/diabetes.csv
-- **Features:** Medical attributes such as glucose level, BMI, age, etc.
-- **Target:** `Outcome`
+1.  Pregnancies -- Number of times pregnant
+2.  Glucose -- Plasma glucose concentration
+3.  BloodPressure -- Diastolic blood pressure (mm Hg)
+4.  SkinThickness -- Triceps skin fold thickness (mm)
+5.  Insulin -- 2-Hour serum insulin (mu U/ml)
+6.  BMI -- Body mass index
+7.  DiabetesPedigreeFunction -- Diabetes pedigree function
+8.  Age -- Age in years
 
+### Target Variable:
 
-## Project Structure
-DiabetesPrediction-mlops-project/
-│
-├── data/
-│ └── diabetes.csv
-├── src/
-│ ├── data_loader.py
-│ ├── preprocess.py
-│ └── train.py
-├── README.md
-├── pyproject.toml
-├── uv.lock
-└── .gitignore
+-   Outcome (0 = Non-diabetic, 1 = Diabetic)
 
-## Dataset Description
+------------------------------------------------------------------------
 
-This project uses the Pima Indians Diabetes Dataset for binary classification.
+#  Checkpoint 1 -- Project Setup & Model Development
 
-| Column Name | Description |
-|------------|-------------|
-| Pregnancies | Number of times pregnant |
-| Glucose | Plasma glucose concentration |
-| BloodPressure | Diastolic blood pressure |
-| SkinThickness | Triceps skin fold thickness |
-| Insulin | 2-hour serum insulin |
-| BMI | Body Mass Index |
-| DiabetesPedigreeFunction | Diabetes pedigree function |
-| Age | Age of the patient |
-| Outcome | Target variable (0 = Non-diabetic, 1 = Diabetic) |
+## Tasks Completed:
 
-## How to Run the Project Locally
+-   Created structured project layout
+-   Set up virtual environment using UV
+-   Implemented data preprocessing pipeline
+-   Trained machine learning model using Scikit-learn
+-   Saved trained model as `model.pkl`
+-   Verified training script execution
 
-### 1. Clone the repository
-```bash`
-git clone https://github.com/Divyasahana/DiabetesPrediction-mlops-project.git
-cd DiabetesPrediction-mlops-project
+------------------------------------------------------------------------
 
-### 2. Create and activate virtual environment
-```bash`
-python -m venv venv
-# Windows:
-venv\Scripts\activate
-# Mac/Linux:
-# source venv/bin/activate
+#  Checkpoint 2 -- MLflow Integration
 
-### 3. Install dependencies
-pip install .
+## Tasks Completed:
 
-### 4. Run the application
-python src/train.py
+-   Integrated MLflow for experiment tracking
+-   Logged model parameters and metrics
+-   Stored trained model as artifact
+-   Managed experiment runs
+-   Launched MLflow UI for visualization
 
+### Start MLflow UI:
 
----
-
-
-## Project Workflow
-
-1. Load dataset from `data/diabetes.csv`
-2. Preprocess and clean data (handle missing values, scale features)
-3. Train machine learning model (Logistic Regression baseline)
-4. Evaluate model performance (accuracy, confusion matrix)
-5. Save trained model for deployment
-
-# Experiment Tracking
-
-This project uses **MLflow** to track machine learning experiments, including:
-
-- Model parameters
-- Evaluation metrics
-- Trained model artifacts
-
-### Experiment Details
-
-- **Experiment Name:** `diabetes-baseline`
-- **Tracked Metric:** Accuracy
-- **Artifacts Logged:** Trained model file
-
-### Run locally
-
-```bash
-python src/train.py
+``` bash
 mlflow ui
+```
 
-###Quick Verification Commands:
-```bash
-# Clone and setup
-git clone https://github.com/Divyasahana/diabetesprediction-mlops-project
-cd diabetesprediction-mlops-project
+Open browser:
+
+http://127.0.0.1:5000
+
+------------------------------------------------------------------------
+
+#  Checkpoint 3 -- CI/CD, Testing & Automation
+
+## Tasks Completed:
+
+-   Implemented unit tests using pytest
+-   Configured test coverage reporting
+-   Added pre-commit hooks
+-   Integrated Ruff (linting) and Black (formatting)
+-   Created GitHub Actions CI pipeline
+
+### Run Tests:
+
+``` bash
+pytest
+```
+
+### Run with Coverage:
+
+``` bash
+pytest --cov=src --cov-report=term
+```
+
+------------------------------------------------------------------------
+
+#  FastAPI Model Deployment
+
+The trained model is deployed using FastAPI.
+
+## Run API Locally:
+
+``` bash
+uvicorn src.api:app --reload
+```
+
+Open:
+
+http://127.0.0.1:8000/docs
+
+Endpoints:
+
+-   GET / → Health check
+-   POST /predict → Returns prediction
+
+------------------------------------------------------------------------
+
+#  Docker Setup
+
+The application is containerized using Docker for portability.
+
+## Build Docker Image:
+
+``` bash
+docker build -t diabetes-mlops-app .
+```
+
+## Run Docker Container:
+
+``` bash
+docker run -p 8000:8000 diabetes-mlops-app
+```
+
+Application will be available at:
+
+http://localhost:8000
+
+------------------------------------------------------------------------
+
+#  How to Run the Project (Complete Steps)
+
+### 1. Create Virtual Environment
+
+``` bash
+uv venv --python 3.11
+```
+
+### 2. Activate Environment
+
+Windows:
+
+``` bash
+.venv\Scripts\activate
+```
+
+### 3. Install Dependencies
+
+``` bash
 uv sync
+```
 
-# Verify pre-commit hooks
-pre-commit run --all-files
+### 4. Train Model
 
-# Run tests with coverage
-pytest tests/ --cov=src --cov-report=term-missing
+``` bash
+python src/train.py
+```
 
-# Run training pipeline
-python -m src.train
+### 5. Start MLflow
 
-# View MLflow experiments
+``` bash
 mlflow ui
+```
 
-### Instruction
- Run training script before running API.
+### 6. Run API
+
+``` bash
+uvicorn src.api:app --reload
+```
+
+------------------------------------------------------------------------
+
+# 🛠 Tools & Technologies Used
+
+-   Python 3.11
+-   Scikit-learn
+-   MLflow
+-   Pytest
+-   GitHub Actions
+-   FastAPI
+-   Uvicorn
+-   Docker
+-   Ruff
+-   Black
+-   UV Package Manager
+
+------------------------------------------------------------------------
+
+# Team Contributions
+
+-   Divya JAYAPRAKASH -- Model Development
+-   Jayasri DHANAPAL -- MLflow Integration
+-   Reshma Karthikeyan NAIR -- CI/CD Setup
+-   Gurpreetkaur Jaykumar MODI -- Testing & Coverage
+-   Vidya Sandeep NAKADE -- Documentation, API & Docker
+
+------------------------------------------------------------------------
+
+# Project Highlights
+
+✔ End-to-end ML pipeline\
+✔ Experiment tracking\
+✔ Automated testing\
+✔ Continuous Integration\
+✔ Model deployment as REST API\
+✔ Containerized deployment\
+✔ Real-world MLOps workflow
+
+------------------------------------------------------------------------
+
+© 2026 Diabetes Prediction MLOps Project
