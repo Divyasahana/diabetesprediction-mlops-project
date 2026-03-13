@@ -1,7 +1,7 @@
 import joblib
 import os
 
-MODEL_PATH = os.getenv("MODEL_PATH", "model/model.pkl")
+MODEL_PATH = os.getenv("MODEL_PATH", "model.pkl")
 
 
 def load_model():
