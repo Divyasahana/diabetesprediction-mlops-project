@@ -4,15 +4,16 @@ from src.predict import load_model, make_prediction
 
 app = FastAPI(title="Diabetes Prediction API")
 
+model = load_model()
 
 class DiabetesInput(BaseModel):
     pregnancies: int
-    glucose: float
-    blood_pressure: float
-    skin_thickness: float
-    insulin: float
+    glucose: int
+    bloodpressure: int
+    skinthickness: int
+    insulin: int
     bmi: float
-    diabetes_pedigree_function: float
+    diabetespedigreefunction: float
     age: int
 
 
@@ -21,21 +22,19 @@ def health():
     return {"status": "healthy"}
 
 
-@app.post("/v1/predict")
+@app.post("/predict")
 def predict(data: DiabetesInput):
-    model = load_model()  # 👈 load model here (lazy loading)
-
-    features = [
+    input_data = [[
         data.pregnancies,
         data.glucose,
-        data.blood_pressure,
-        data.skin_thickness,
+        data.bloodpressure,
+        data.skinthickness,
         data.insulin,
         data.bmi,
-        data.diabetes_pedigree_function,
-        data.age,
-    ]
+        data.diabetespedigreefunction,
+        data.age
+    ]]
 
-    prediction = make_prediction(model, features)
+    prediction = make_prediction(model, input_data[0])
 
     return {"prediction": int(prediction)}
