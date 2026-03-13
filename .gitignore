@@ -27,6 +27,3 @@ build/
 # OS
 .DS_Store
 .env
-
-*.pkl
-model.pkl
