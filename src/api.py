@@ -1,4 +1,5 @@
-from fastapi import FastAPI
+# src/api.py
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from src.predict import load_model, make_prediction
 
@@ -14,25 +15,24 @@ class DiabetesInput(BaseModel):
     diabetes_pedigree_function: float
     age: int
 
+# Load model once at startup
+model = load_model()
+if model is None:
+    print("Warning: Model did not load. Predictions will fail.")
+
 @app.get("/health")
 def health():
     return {"status": "healthy"}
 
 @app.post("/v1/predict")
 def predict(data: DiabetesInput):
-    model = load_model()   # 👈 load model here (lazy loading)
+    if model is None:
+        raise HTTPException(status_code=500, detail="Model not loaded")
 
-    features = [
-        data.pregnancies,
-        data.glucose,
-        data.blood_pressure,
-        data.skin_thickness,
-        data.insulin,
-        data.bmi,
-        data.diabetes_pedigree_function,
-        data.age
-    ]
+    features = data.dict()
+    try:
+        prediction = make_prediction(model, features)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Prediction error: {e}")
 
-    prediction = make_prediction(model, features)
-
-    return {"prediction": int(prediction)}
+    return {"prediction": prediction}
