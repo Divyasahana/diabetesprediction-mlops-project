@@ -16,14 +16,21 @@ def validate_dataset(path: str):
     df = pd.read_csv(path)
 
     expected_columns = {
-        "Pregnancies", "Glucose", "BloodPressure", "SkinThickness",
-        "Insulin", "BMI", "DiabetesPedigreeFunction", "Age", "Outcome"
+        "Pregnancies",
+        "Glucose",
+        "BloodPressure",
+        "SkinThickness",
+        "Insulin",
+        "BMI",
+        "DiabetesPedigreeFunction",
+        "Age",
+        "Outcome",
     }
 
     # Check column names
-    assert set(df.columns) == expected_columns, (
-        f"Unexpected columns found: {df.columns}"
-    )
+    assert (
+        set(df.columns) == expected_columns
+    ), f"Unexpected columns found: {df.columns}"
 
     # Check missing values
     assert df.isnull().sum().sum() == 0, "Dataset contains missing values!"
