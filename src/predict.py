@@ -1,16 +1,13 @@
-# src/predict.py
 import mlflow.pyfunc
 import pandas as pd
-import os
 from pathlib import Path
+import os
 
-# Get path from environment variable or default
 MODEL_PATH = os.getenv(
     "MODEL_PATH",
     r"C:\Projects\DiabetesPrediction-mlops-project\mlruns\1\models\m-20a614b1b5244d369ca03809c249bb1a\artifacts"
 )
 
-# Convert Windows path to URI (file:///C:/...)
 MODEL_URI = Path(MODEL_PATH).resolve().as_uri()
 
 def load_model():
@@ -24,6 +21,13 @@ def load_model():
         return None
 
 def make_prediction(model, features: dict):
-    input_df = pd.DataFrame([features])
-    prediction = model.predict(input_df)
-    return int(prediction[0])
+    try:
+        input_df = pd.DataFrame([features])
+        prediction = model.predict(input_df)
+        
+        # Convert probability to 0/1 if necessary
+        result = int(prediction[0]) if prediction[0] in [0, 1] else int(prediction[0] > 0.5)
+        return result
+    except Exception as e:
+        print(f"Error during prediction: {e}")
+        return None
