@@ -1,41 +1,45 @@
-from fastapi import FastAPI
-from pydantic import BaseModel
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel, Field
 from src.predict import load_model, make_prediction
 
 app = FastAPI(title="Diabetes Prediction API")
 
+# Pydantic model with correct aliases
 class DiabetesInput(BaseModel):
     pregnancies: int
     glucose: int
-    bloodpressure: int
-    skinthickness: int
+    blood_pressure: int = Field(..., alias="blood_pressure")
+    skin_thickness: int = Field(..., alias="skin_thickness")
     insulin: int
     bmi: float
-    diabetespedigreefunction: float
+    diabetes_pedigree_function: float = Field(..., alias="diabetes_pedigree_function")
     age: int
 
+    class Config:
+        allow_population_by_field_name = True
 
+# Load MLflow model once at startup
+model = load_model()
+if model is None:
+    print("Warning: Model did not load. Predictions will fail.")
+
+# Health check endpoint
 @app.get("/health")
 def health():
     return {"status": "healthy"}
 
-
-@app.post("/predict")
+# Prediction endpoint
+@app.post("/v1/predict")
 def predict(data: DiabetesInput):
+    if model is None:
+        raise HTTPException(status_code=500, detail="Model not loaded")
 
-    model = load_model()   # ✅ load here (lazy loading)
-    
-    input_data = [[
-        data.pregnancies,
-        data.glucose,
-        data.bloodpressure,
-        data.skinthickness,
-        data.insulin,
-        data.bmi,
-        data.diabetespedigreefunction,
-        data.age
-    ]]
+    # Use by_alias=True so MLflow gets correct column names
+    features = data.dict(by_alias=True)
 
-    prediction = make_prediction(model, input_data[0])
+    try:
+        prediction = make_prediction(model, features)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Prediction error: {e}")
 
-    return {"prediction": int(prediction)}
+    return {"prediction": prediction}

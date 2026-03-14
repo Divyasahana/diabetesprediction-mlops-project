@@ -5,3 +5,5 @@ __pycache__
 notebooks
 tests
 .env
+.venv
+mlruns
