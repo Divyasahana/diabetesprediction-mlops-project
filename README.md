@@ -105,9 +105,8 @@ Trains a machine learning model using Scikit-learn.
 **Experiment Tracking**  
 MLflow records parameters, metrics, and artifacts.
 
-**Model Storage**
+**Model Storage**  
 model/model.pkl
-
 
 **Prediction API**  
 FastAPI exposes the trained model through REST endpoints.
