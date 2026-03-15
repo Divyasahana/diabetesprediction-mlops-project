@@ -14,6 +14,17 @@ This project builds a **machine learning model that predicts diabetes risk using
 
 The system demonstrates how machine learning models move from **development to deployment and monitoring**.
 
+---
+ 
+# Project Demo
+
+A demonstration video of the project showing model training, API usage, and monitoring can be viewed here:
+
+## MLOPS Final Demo Video:
+https://drive.google.com/file/d/15eXlzXd68a3eUZtpmKrEcnLVGW9GTNVk/view?usp=sharing
+
+---
+
 ## Key Features
 
 - Data preprocessing pipeline  
@@ -309,11 +320,11 @@ The project was developed collaboratively using **GitHub feature branches and pu
 
 | Team Member | Responsibility |
 |-------------|---------------|
-| Member 1 | Model improvement and evaluation |
-| Member 2 | FastAPI API development |
-| Member 3 | Docker containerization |
-| Member 4 | Monitoring and metrics integration |
-| Member 5 | Documentation and report preparation |
+| Divya JAYAPRAKASH | Model improvement and evaluation |
+| Jayasri DHANAPAL | FastAPI API development |
+| Reshma KARTHIKEYAN NAIR | Docker containerization |
+| Gurpreetkaur Jaykumar MODI | Monitoring and metrics integration |
+| Vidya Sandeep NAKADE | Documentation and report preparation |
 
 All contributions were merged through **Pull Requests and code reviews** to ensure code quality and maintain project consistency.
 
