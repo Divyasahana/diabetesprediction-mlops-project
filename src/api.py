@@ -1,45 +1,37 @@
-from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel, Field
-from src.predict import load_model, make_prediction
+from fastapi import FastAPI
+import joblib
+import numpy as np
+from pathlib import Path
 
-app = FastAPI(title="Diabetes Prediction API")
+app = FastAPI()
 
-# Pydantic model with correct aliases
-class DiabetesInput(BaseModel):
-    pregnancies: int
-    glucose: int
-    blood_pressure: int = Field(..., alias="blood_pressure")
-    skin_thickness: int = Field(..., alias="skin_thickness")
-    insulin: int
-    bmi: float
-    diabetes_pedigree_function: float = Field(..., alias="diabetes_pedigree_function")
-    age: int
+BASE_DIR = Path(__file__).resolve().parent.parent
+MODEL_PATH = BASE_DIR / "model" / "model.pkl"
 
-    class Config:
-        allow_population_by_field_name = True
+model = joblib.load(MODEL_PATH)
 
-# Load MLflow model once at startup
-model = load_model()
-if model is None:
-    print("Warning: Model did not load. Predictions will fail.")
 
-# Health check endpoint
-@app.get("/health")
-def health():
-    return {"status": "healthy"}
+@app.get("/")
+def home():
+    return {"message": "Diabetes Prediction API running"}
 
-# Prediction endpoint
+
 @app.post("/v1/predict")
-def predict(data: DiabetesInput):
-    if model is None:
-        raise HTTPException(status_code=500, detail="Model not loaded")
+def predict(data: dict):
 
-    # Use by_alias=True so MLflow gets correct column names
-    features = data.dict(by_alias=True)
+    features = [
+        data["pregnancies"],
+        data["glucose"],
+        data["blood_pressure"],
+        data["skin_thickness"],
+        data["insulin"],
+        data["bmi"],
+        data["diabetes_pedigree_function"],
+        data["age"],
+    ]
 
-    try:
-        prediction = make_prediction(model, features)
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Prediction error: {e}")
+    input_data = np.array(features).reshape(1, -1)
 
-    return {"prediction": prediction}
+    prediction = model.predict(input_data)
+
+    return {"prediction": int(prediction[0])}
